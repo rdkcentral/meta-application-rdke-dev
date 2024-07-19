@@ -9,6 +9,4 @@ inherit packagegroup
 PV = "2.1"
 
 RDEPENDS_packagegroup-application-layer = " \
-                                          rdkresidentapp \
-                                          residentui \
                                          "
