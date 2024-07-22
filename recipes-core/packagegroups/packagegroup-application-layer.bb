@@ -1,5 +1,5 @@
 SUMMARY = "Custom package group for application layer"
-PACKAGE_ARCH = "generic-apps"
+PACKAGE_ARCH = "${MACHINE}-apps"
 
 LICENSE = "CLOSED"
 
