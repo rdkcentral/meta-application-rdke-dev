@@ -8,7 +8,7 @@ SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git/accelerator-home-ui/dist/"
 
-#Ligtening application, no need for configuration/compilation
+#Lightning application, no need for configuration/compilation
 do_compile[noexec] = "1"
 do_configure[noexec] = "1"
 

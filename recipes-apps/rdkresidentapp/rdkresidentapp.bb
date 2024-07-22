@@ -4,8 +4,7 @@ HOMEPAGE = ""
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3cc4d276e918f48b04eb2faf952d0537"
 
-DEPENDS = "wpeframework"
-RDEPENDS_${PN} += "bash"
+RDEPENDS_${PN} += "bash lighttpd wpeframework"
 inherit systemd syslog-ng-config-gen
 SYSLOG-NG_FILTER = "residentapp"
 SYSLOG-NG_SERVICE_residentapp = "residentapp.service"
