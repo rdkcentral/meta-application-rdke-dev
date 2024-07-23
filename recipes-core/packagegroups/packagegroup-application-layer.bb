@@ -1,5 +1,5 @@
 SUMMARY = "Custom package group for application layer"
-PACKAGE_ARCH = "${MACHINE}-apps"
+PACKAGE_ARCH = "${APP_LAYER_ARCH}"
 
 LICENSE = "MIT"
 

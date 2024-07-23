@@ -5,4 +5,4 @@ PACKAGE_EXTRA_ARCHS_append = " ${APP_LAYER_ARCH}"
 
 IPK_FEED_URIS += " "
 
-require package_revision.inc
+require package_revisions.inc

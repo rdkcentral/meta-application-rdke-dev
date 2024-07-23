@@ -14,6 +14,8 @@ SYSLOG-NG_LOGRATE_residentapp = "low"
 # FIXME: Move to a common config
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
+PACKAGE_ARCH = "${APP_LAYER_ARCH}"
+
 S = "${WORKDIR}/git"
 
 SRC_URI = "${CMF_GIT_ROOT}/rdk/components/generic/appmanager;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_BRANCH};name=generic"
