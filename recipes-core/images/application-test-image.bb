@@ -1,6 +1,4 @@
-SUMMARY = "A image just capable of allowing a device to boot"
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SUMMARY = "RDKE Bootable Image with App support"
 
 LICENSE = "MIT"
 IMAGE_INSTALL = " \
