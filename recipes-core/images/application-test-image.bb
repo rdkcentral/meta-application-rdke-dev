@@ -1,6 +1,4 @@
-SUMMARY = "A image just capable of allowing a device to boot."
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SUMMARY = "RDKE Bootable Image with App support"
 
 LICENSE = "MIT"
 IMAGE_INSTALL = " \
@@ -11,7 +9,7 @@ IMAGE_INSTALL = " \
                  "
 inherit core-image
 
-inherit custom-rootfs-creation
+inherit custom-rootfs-configuration
 
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE_append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "" ,d)}"
