@@ -10,5 +10,5 @@ PV = "1.0"
 
 RDEPENDS_packagegroup-application-layer = " \
                                            residentui \
-                                           rdkresident-app \
+                                           rdkresidentapp \
                                          "
