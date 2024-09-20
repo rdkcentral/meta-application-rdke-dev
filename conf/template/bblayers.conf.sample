@@ -22,10 +22,11 @@ BBLAYERS =+ "${@'${MANIFEST_PATH_MW_RELEASE}' if os.path.isfile('${MANIFEST_PATH
 
 BBLAYERS =+ "${@'${MANIFEST_PATH_APPLICATION_DEVELOPMENT}' if os.path.isfile('${MANIFEST_PATH_APPLICATION_DEVELOPMENT}/conf/layer.conf') else ''}"
 
+BBLAYERS =+ "${@'${MANIFEST_PATH_STACK_LAYERING_SUPPORT}' if os.path.isfile('${MANIFEST_PATH_STACK_LAYERING_SUPPORT}/conf/layer.conf') else ''}"
+BBLAYERS =+ "${@'${MANIFEST_PATH_RDK_AUXILIARY}' if os.path.isfile('${MANIFEST_PATH_RDK_AUXILIARY}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_IMAGE_SUPPORT}' if os.path.isfile('${MANIFEST_PATH_IMAGE_SUPPORT}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_OPENEMBEDDED}' if os.path.isfile('${MANIFEST_PATH_OPENEMBEDDED}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_POKY}' if os.path.isfile('${MANIFEST_PATH_POKY}/conf/layer.conf') else ''}"
-BBLAYERS =+ "${@'${MANIFEST_PATH_FOUNDATION_RELEASE}' if os.path.isfile('${MANIFEST_PATH_FOUNDATION_RELEASE}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_SCRIPTS}' if os.path.isfile('${MANIFEST_PATH_SCRIPTS}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_VENDOR_RELEASE}' if os.path.isfile('${MANIFEST_PATH_VENDOR_RELEASE}/conf/layer.conf') else ''}"
 
