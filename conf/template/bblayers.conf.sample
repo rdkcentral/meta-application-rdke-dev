@@ -9,11 +9,13 @@ RDKROOT := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..
 include manifest_vars.conf
 
 BBLAYERS ?= " \
-  ${RDKROOT}/rdke/common/poky/meta \
-  ${RDKROOT}/rdke/common/meta-openembedded/meta-oe \
-  ${RDKROOT}/rdke/common/meta-openembedded/meta-python \
-  ${RDKROOT}/rdke/common/meta-openembedded/meta-multimedia \
-  "
+  ${MANIFEST_PATH_POKY}/meta \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-oe \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-python \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-webserver \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-multimedia \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-networking \
+"
 
 BBLAYERS =+ "${@'${MANIFEST_PATH_COMMON_OSS_REFERENCE}' if os.path.isfile('${MANIFEST_PATH_COMMON_OSS_REFERENCE}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_OSS_RELEASE}' if os.path.isfile('${MANIFEST_PATH_OSS_RELEASE}/conf/layer.conf') else ''}"
