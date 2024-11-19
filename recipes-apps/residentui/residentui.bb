@@ -3,7 +3,10 @@ SECTION = "rdk/samples"
 LICENSE = "Apache-2.0 & MIT & OFL-1.1 & CC0-1.0 & BitstreamVera"
 LIC_FILES_CHKSUM = "file://${S}/../../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
 
-SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;${CMF_GIT_SRC_URI_SUFFIX}"
+# Temporary; until following PRs gets to main branch.
+# https://github.com/rdkcentral/rdke-refui/pull/5
+# https://github.com/rdkcentral/rdke-refui/pull/7
+SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;protocol=${CMF_GIT_PROTOCOL};branch=develop"
 SRCREV = "${AUTOREV}"
 
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
