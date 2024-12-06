@@ -7,6 +7,8 @@ IMAGE_INSTALL = " \
                  packagegroup-application-layer \
                  "
 IMAGE_INSTALL:append = " volatile-binds"
+# Todo: Remove once PR - https://github.com/rdk-e/meta-middleware-generic-support/pull/683 is released
+IMAGE_INSTALL:append = " virtual/default-font"
 inherit core-image
 
 inherit custom-rootfs-creation
