@@ -6,6 +6,7 @@ IMAGE_INSTALL = " \
                  packagegroup-middleware-layer \
                  packagegroup-application-layer \
                  "
+IMAGE_INSTALL:append = " volatile-binds"
 inherit core-image
 
 inherit custom-rootfs-creation
