@@ -8,7 +8,7 @@ inherit packagegroup
 ##Change the version number for each release.
 PV = "1.1.0"
 
-RDEPENDS_packagegroup-application-layer = " \
+RDEPENDS:packagegroup-application-layer = " \
                                            residentui \
                                            rdkresidentapp \
                                          "

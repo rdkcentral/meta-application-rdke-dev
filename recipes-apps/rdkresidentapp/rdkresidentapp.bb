@@ -4,7 +4,7 @@ HOMEPAGE = ""
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3cc4d276e918f48b04eb2faf952d0537"
 
-RDEPENDS_${PN} += "bash lighttpd wpeframework"
+RDEPENDS:${PN} += "bash lighttpd wpeframework"
 inherit systemd syslog-ng-config-gen
 SYSLOG-NG_FILTER = "residentapp"
 SYSLOG-NG_SERVICE_residentapp = "residentapp.service"
@@ -12,7 +12,7 @@ SYSLOG-NG_DESTINATION_residentapp = "residentapp.log"
 SYSLOG-NG_LOGRATE_residentapp = "low"
 
 # FIXME: Move to a common config
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
 
@@ -23,6 +23,11 @@ SRC_URI = "${CMF_GIT_ROOT}/rdk/components/generic/appmanager;protocol=${CMF_GIT_
 # FIXME: Move to a common config
 SRC_URI += "file://ref-webui-docroot-path.conf"
 
+SRC_URI += "file://00-activate-rdkshell.conf"
+
+# Remove once RDKEMW-671 is release. Workaround to fix UI issue
+SRC_URI += "file://wpeframework-rdkshell.service"
+
 SRCREV_generic = "${AUTOREV}"
 SRCREV_FORMAT = "generic"
 
@@ -30,16 +35,30 @@ do_install() {
    install -d ${D}${systemd_unitdir}/system
    install -m 0644 ${S}/resources/systemd/residentapp.service ${D}${systemd_unitdir}/system/residentapp.service
 
+   install -D -m 0644 ${WORKDIR}/00-activate-rdkshell.conf ${D}${systemd_unitdir}/system/residentapp.service.d/00-activate-rdkshell.conf
+
    install -d ${D}/lib/rdk
    install -m 0755 ${S}/residentapp/residentApp.sh ${D}/lib/rdk/residentApp.sh
 }
 
+# Remove once RDKEMW-671 is release. Workaround to fix UI issue
+do_install:append() {
+   install -m 0644 ${S}/resources/systemd/wpeframework-rdkshell.service ${D}${systemd_unitdir}/system/wpeframework-rdkshell.service
+}
+
 # FIXME: Move to a common config
-do_install_append() {
+do_install:append() {
     install -d ${D}${sysconfdir}/lighttpd.d
     install -m 0644 ${WORKDIR}/ref-webui-docroot-path.conf ${D}${sysconfdir}/lighttpd.d/
 }
 
-SYSTEMD_SERVICE_${PN} = "residentapp.service"
-FILES_${PN} += "${systemd_unitdir}/system/residentapp.service"
-FILES_${PN} += "/lib/rdk/residentApp.sh"
+SYSTEMD_SERVICE:${PN} = "residentapp.service"
+FILES:${PN} += "${systemd_unitdir}/system/residentapp.service"
+FILES:${PN} += "/lib/rdk/residentApp.sh"
+FILES:${PN} += "${systemd_unitdir}/system/residentapp.service.d/*"
+
+
+# Remove once RDKEMW-671 is release. Workaround to fix UI issue
+SYSTEMD_SERVICE:${PN} += "wpeframework-rdkshell.service"
+FILES:${PN} += "${systemd_unitdir}/system/wpeframework-rdkshell.service"
+

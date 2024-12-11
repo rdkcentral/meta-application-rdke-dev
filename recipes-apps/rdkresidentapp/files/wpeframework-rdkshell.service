@@ -1,0 +1,12 @@
+# To do: Remove whrn RDKEMW-671 is released
+
+
+[Unit]
+Description=WPEFramework RDKShell Initialiser
+Requires=wpeframework.service iarmbusd.service dsmgr.service
+After=wpeframework.service iarmbusd.service dsmgr.service\
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/PluginActivator org.rdk.RDKShell
