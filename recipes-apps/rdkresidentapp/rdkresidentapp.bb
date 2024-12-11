@@ -43,7 +43,7 @@ do_install() {
 
 # Remove once RDKEMW-671 is release. Workaround to fix UI issue
 do_install:append() {
-   install -m 0644 ${S}/resources/systemd/wpeframework-rdkshell.service ${D}${systemd_unitdir}/system/wpeframework-rdkshell.service
+   install -m 0644 ${S}/../wpeframework-rdkshell.service ${D}${systemd_unitdir}/system/wpeframework-rdkshell.service
 }
 
 # FIXME: Move to a common config
