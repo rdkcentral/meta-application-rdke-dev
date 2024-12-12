@@ -4,7 +4,7 @@
 [Unit]
 Description=WPEFramework RDKShell Initialiser
 Requires=wpeframework.service iarmbusd.service dsmgr.service
-After=wpeframework.service iarmbusd.service dsmgr.service\
+After=wpeframework.service iarmbusd.service dsmgr.service
 
 [Service]
 Type=oneshot
