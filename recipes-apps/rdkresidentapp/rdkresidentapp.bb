@@ -1,7 +1,7 @@
 SUMMARY = "RDK Refernce Script to start the ResidentApp WebkitInstance with RefUI"
 SECTION = "rdk/samples"
 LICENSE = "Apache-2.0 & MIT & OFL-1.1 & CC0-1.0 & BitstreamVera"
-LIC_FILES_CHKSUM = "file://${S}/../../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
+LIC_FILES_CHKSUM = "file://${S}/../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
 
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
 
