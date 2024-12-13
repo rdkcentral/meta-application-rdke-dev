@@ -17,7 +17,7 @@ S = "${WORKDIR}/git/accelerator-home-ui/dist/"
 do_compile[noexec] = "1"
 do_configure[noexec] = "1"
 
-RDEPENDS_${PN}-dev = ""
+RDEPENDS:${PN}-dev = ""
 
 do_install() {
    install -d ${D}/home/root/lxresui
@@ -25,4 +25,4 @@ do_install() {
 }
 
 
-FILES_${PN} += "/home/root/*"
+FILES:${PN} += "/home/root/*"

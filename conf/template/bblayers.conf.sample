@@ -9,11 +9,13 @@ RDKROOT := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..
 include manifest_vars.conf
 
 BBLAYERS ?= " \
-  ${RDKROOT}/rdke/common/poky/meta \
-  ${RDKROOT}/rdke/common/meta-openembedded/meta-oe \
-  ${RDKROOT}/rdke/common/meta-openembedded/meta-python \
-  ${RDKROOT}/rdke/common/meta-openembedded/meta-multimedia \
-  "
+  ${MANIFEST_PATH_POKY}/meta \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-oe \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-python \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-webserver \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-multimedia \
+  ${MANIFEST_PATH_OPENEMBEDDED}/meta-networking \
+"
 
 BBLAYERS =+ "${@'${MANIFEST_PATH_COMMON_OSS_REFERENCE}' if os.path.isfile('${MANIFEST_PATH_COMMON_OSS_REFERENCE}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_OSS_RELEASE}' if os.path.isfile('${MANIFEST_PATH_OSS_RELEASE}/conf/layer.conf') else ''}"
@@ -24,7 +26,6 @@ BBLAYERS =+ "${@'${MANIFEST_PATH_APPLICATION_DEVELOPMENT}' if os.path.isfile('${
 
 BBLAYERS =+ "${@'${MANIFEST_PATH_STACK_LAYERING_SUPPORT}' if os.path.isfile('${MANIFEST_PATH_STACK_LAYERING_SUPPORT}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_RDK_AUXILIARY}' if os.path.isfile('${MANIFEST_PATH_RDK_AUXILIARY}/conf/layer.conf') else ''}"
-BBLAYERS =+ "${@'${MANIFEST_PATH_IMAGE_SUPPORT}' if os.path.isfile('${MANIFEST_PATH_IMAGE_SUPPORT}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_OPENEMBEDDED}' if os.path.isfile('${MANIFEST_PATH_OPENEMBEDDED}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_POKY}' if os.path.isfile('${MANIFEST_PATH_POKY}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_SCRIPTS}' if os.path.isfile('${MANIFEST_PATH_SCRIPTS}/conf/layer.conf') else ''}"
@@ -33,5 +34,5 @@ BBLAYERS =+ "${@'${MANIFEST_PATH_VENDOR_RELEASE}' if os.path.isfile('${MANIFEST_
 BBLAYERS =+ "${@'${MANIFEST_PATH_COMMON_CONFIG}' if os.path.isfile('${MANIFEST_PATH_COMMON_CONFIG}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_PROFILE_CONFIG}' if os.path.isfile('${MANIFEST_PATH_PROFILE_CONFIG}/conf/layer.conf') else ''}"
 
-
-
+# Optional layers
+BBLAYERS =+ " ${@d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') if d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') is not None and os.path.isfile(d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') + '/conf/layer.conf') else ''}"
