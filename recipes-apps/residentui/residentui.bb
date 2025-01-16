@@ -7,7 +7,6 @@ LIC_FILES_CHKSUM = "file://${S}/../../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c
 # https://github.com/rdkcentral/rdke-refui/pull/5
 # https://github.com/rdkcentral/rdke-refui/pull/7
 SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;protocol=${CMF_GIT_PROTOCOL};branch=develop"
-SRCREV = "${AUTOREV}"
 
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
 

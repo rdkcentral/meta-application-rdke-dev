@@ -14,7 +14,6 @@ SYSLOG-NG_DESTINATION_residentapp = "residentapp.log"
 SYSLOG-NG_LOGRATE_residentapp = "low"
 
 SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;protocol=${CMF_GIT_PROTOCOL};branch=develop"
-SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git/residentapp/"
 
