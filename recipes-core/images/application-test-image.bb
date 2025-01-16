@@ -39,12 +39,20 @@ remove_securemount_dep_patch() {
    sed -i '/Requires=securemount.service/d' ${IMAGE_ROOTFS}/lib/systemd/system/wpa_supplicant.service
    sed -i 's/\bsecuremount\.service\b//g' ${IMAGE_ROOTFS}/lib/systemd/system/wpa_supplicant.service
 }
-
-
 ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "debug-variant", "wpeframework_binding_patch; ", "", d)}'
 
 wpeframework_binding_patch(){
     sed -i "s/127.0.0.1/0.0.0.0/g" ${IMAGE_ROOTFS}/etc/WPEFramework/config.json
 }
 
-
+# If vendor layer provides dobby configuration, then remove the generic config
+dobby_generic_config_patch(){
+    if [ -f "${IMAGE_ROOTFS}/etc/dobby.generic.json" ]; then
+        if [ -f "${IMAGE_ROOTFS}/etc/dobby.json" ]; then
+            rm ${IMAGE_ROOTFS}/etc/dobby.generic.json
+        else
+            mv ${IMAGE_ROOTFS}/etc/dobby.generic.json ${IMAGE_ROOTFS}/etc/dobby.json
+        fi
+    fi
+}
+ROOTFS_POSTPROCESS_COMMAND += "dobby_generic_config_patch; "
