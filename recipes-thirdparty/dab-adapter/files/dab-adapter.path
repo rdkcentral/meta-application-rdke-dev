@@ -1,0 +1,10 @@
+[Unit]
+Description=DAB <-> RDK adapter Path Activator
+OnFailure=path-fail-notifier@%n.service
+
+[Path]
+PathExists=/opt/dab-enable
+Unit=dab-adapter.service
+
+[Install]
+WantedBy=multi-user.target
