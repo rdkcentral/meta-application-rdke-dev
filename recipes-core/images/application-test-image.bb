@@ -31,14 +31,6 @@ update_dropbearkey_path() {
    fi
 }
 
-# RDK-50713: Remove securemount dependency from wpa_supplicant.service
-# Revert once the actual fix is merged as part of the ticket
-ROOTFS_POSTPROCESS_COMMAND += "remove_securemount_dep_patch;"
-
-remove_securemount_dep_patch() {
-   sed -i '/Requires=securemount.service/d' ${IMAGE_ROOTFS}/lib/systemd/system/wpa_supplicant.service
-   sed -i 's/\bsecuremount\.service\b//g' ${IMAGE_ROOTFS}/lib/systemd/system/wpa_supplicant.service
-}
 ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "debug-variant", "wpeframework_binding_patch; ", "", d)}'
 
 wpeframework_binding_patch(){
