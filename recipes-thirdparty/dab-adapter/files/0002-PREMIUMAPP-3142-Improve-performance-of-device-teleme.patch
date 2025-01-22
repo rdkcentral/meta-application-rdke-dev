@@ -1,0 +1,112 @@
+From cafa70dfc2e33f146fc82eee6d84eb54397c3858 Mon Sep 17 00:00:00 2001
+From: Adam Stolcenburg <adam_stolcenburg@comcast.com>
+Date: Tue, 14 Jan 2025 12:25:29 +0100
+Subject: [PATCH 2/5] PREMIUMAPP-3142 Improve performance of
+ device-telemetry/stop request
+
+---
+ src/dab/device_telemetry.rs | 46 +++++++++++++++++++++++++------------
+ 1 file changed, 31 insertions(+), 15 deletions(-)
+
+diff --git a/src/dab/device_telemetry.rs b/src/dab/device_telemetry.rs
+index 95cf0d8..c4536f8 100644
+--- a/src/dab/device_telemetry.rs
++++ b/src/dab/device_telemetry.rs
+@@ -8,18 +8,21 @@ use crate::hw_specific::interface::get_device_memory;
+ use crate::hw_specific::interface::get_device_cpu;
+ 
+ use std::{
+-    sync::{
+-        atomic::{AtomicBool, Ordering},
+-        Arc,
+-    },
++    sync::{Arc, Mutex, Condvar},
+     thread,
+     time::{Duration, SystemTime, UNIX_EPOCH},
+ };
+ 
++#[allow(dead_code)]
++struct ThreadContext {
++    mutex: Mutex<bool>,
++    cond: Condvar,
++}
++
+ #[allow(dead_code)]
+ pub struct DeviceTelemetry {
+-    enabled: Arc<AtomicBool>,
+     handle: Option<thread::JoinHandle<()>>,
++    context: Arc<ThreadContext>,
+     mqtt_client: MqttClient,
+     device_id: String,
+ }
+@@ -28,8 +31,11 @@ pub struct DeviceTelemetry {
+ impl DeviceTelemetry {
+     pub fn new(mqtt_client: MqttClient, device_id: String) -> DeviceTelemetry {
+         DeviceTelemetry {
+-            enabled: Arc::new(AtomicBool::new(false)),
+             handle: None,
++            context: Arc::new(ThreadContext {
++                mutex: Mutex::new(false),
++                cond: Condvar::new()
++            }),
+             mqtt_client: mqtt_client,
+             device_id: device_id,
+         }
+@@ -37,19 +43,20 @@ impl DeviceTelemetry {
+ 
+     pub fn start<'a>(&'a mut self, period: u64) {
+         // If it is already running, stop the instance before creating a new one
+-        let enabled = self.enabled.clone();
+-        if enabled.load(Ordering::Relaxed) {
+-            self.stop();
+-        }
++        self.stop();
+ 
+         // Start the telemetry thread
+-        self.enabled.store(true, Ordering::Relaxed);
+-        let enabled = self.enabled.clone();
++        let mut enabled = self.context.mutex.lock().unwrap();
++        assert!(*enabled == false);
++        *enabled = true;
++        let context = self.context.clone();
+         let device_id = self.device_id.clone();
+         let mqtt_client = self.mqtt_client.clone();
+ 
+         self.handle = Some(thread::spawn(move || {
+-            while enabled.load(Ordering::Relaxed) {
++            let ThreadContext {mutex, cond} = &*context;
++
++            loop {
+                 let metrics = [("memory", get_device_memory()), ("cpu", get_device_cpu())];
+ 
+                 let zero_vector = vec![0];
+@@ -72,15 +79,24 @@ impl DeviceTelemetry {
+                     mqtt_client.publish(msg_tx);
+                 }
+ 
+-                thread::sleep(Duration::from_millis(period));
++                if cond.wait_timeout_while(
++                    mutex.lock().unwrap(),
++                    Duration::from_millis(period),
++                    |&mut enabled| enabled
++                ).unwrap().1.timed_out() == false {
++                    break;
++                }
+             }
+         }));
+     }
+ 
+     pub fn stop(&mut self) {
+         // Stop the telemetry thread
+-        self.enabled.store(false, Ordering::Relaxed);
++        let mut enabled = self.context.mutex.lock().unwrap();
+         if let Some(handle) = self.handle.take() {
++            *enabled = false;
++            self.context.cond.notify_one();
++            drop(enabled);
+             handle.join().unwrap();
+         }
+     }
+-- 
+2.43.0
+

@@ -1,0 +1,150 @@
+From c073ede71b1567ab38a254863f9c1421e260cff0 Mon Sep 17 00:00:00 2001
+From: Adam Stolcenburg <adam_stolcenburg@comcast.com>
+Date: Tue, 14 Jan 2025 12:29:56 +0100
+Subject: [PATCH 5/5] PREMIUMAPP-3142 Remove AmazonAlexa from the list of
+ supported voice systems
+
+---
+ src/device/rdk/voice/list.rs       | 4 ++++
+ src/device/rdk/voice/send_audio.rs | 7 +++++++
+ src/device/rdk/voice/send_text.rs  | 8 ++++++++
+ src/device/rdk/voice/set.rs        | 8 ++++++++
+ 4 files changed, 27 insertions(+)
+
+diff --git a/src/device/rdk/voice/list.rs b/src/device/rdk/voice/list.rs
+index 1b5de47..ed73e96 100644
+--- a/src/device/rdk/voice/list.rs
++++ b/src/device/rdk/voice/list.rs
+@@ -1,9 +1,11 @@
+ use crate::dab::structs::DabError;
+ use crate::dab::structs::ListVoiceSystemsResponse;
+ use crate::dab::structs::VoiceListRequest;
++/*
+ use crate::dab::structs::VoiceSystem;
+ use crate::device::rdk::interface::http_post;
+ use serde::{Deserialize, Serialize};
++*/
+ 
+ #[allow(non_snake_case)]
+ #[allow(dead_code)]
+@@ -12,6 +14,7 @@ pub fn process(_dab_request: VoiceListRequest) -> Result<String, DabError> {
+     let mut ResponseOperator = ListVoiceSystemsResponse::default();
+     // *** Fill in the fields of the struct VoiceSystem here ***
+ 
++    /*
+     #[derive(Serialize)]
+     struct RdkRequest {
+         jsonrpc: String,
+@@ -67,6 +70,7 @@ pub fn process(_dab_request: VoiceListRequest) -> Result<String, DabError> {
+         };
+         ResponseOperator.voiceSystems.push(avs);
+     }
++    */
+ 
+     // *******************************************************************
+     Ok(serde_json::to_string(&ResponseOperator).unwrap())
+diff --git a/src/device/rdk/voice/send_audio.rs b/src/device/rdk/voice/send_audio.rs
+index 85acd93..16fb889 100644
+--- a/src/device/rdk/voice/send_audio.rs
++++ b/src/device/rdk/voice/send_audio.rs
+@@ -1,13 +1,20 @@
++/*
+ use super::voice_functions::sendVoiceCommand;
++*/
+ use crate::dab::structs::DabError;
+ use crate::dab::structs::SendAudioRequest;
++/*
+ use crate::device::rdk::interface::http_download;
++*/
+ 
+ #[allow(non_snake_case)]
+ #[allow(dead_code)]
+ #[allow(unused_mut)]
+ pub fn process(_dab_request: SendAudioRequest) -> Result<String, DabError> {
++    Err(DabError::Err400("Unsupported 'voiceSystem'.".to_string()))
++/*
+     http_download(_dab_request.fileLocation)?;
+     sendVoiceCommand("/tmp/tts.wav".into())?;
+     Ok("{}".to_string())
++*/
+ }
+diff --git a/src/device/rdk/voice/send_text.rs b/src/device/rdk/voice/send_text.rs
+index 80a7d98..e14fb70 100644
+--- a/src/device/rdk/voice/send_text.rs
++++ b/src/device/rdk/voice/send_text.rs
+@@ -1,6 +1,9 @@
++/*
+ use super::voice_functions::sendVoiceCommand;
++*/
+ use crate::dab::structs::DabError;
+ use crate::dab::structs::SendTextRequest;
++/*
+ use std::fs::File;
+ use std::io::Write;
+ use std::path::Path;
+@@ -8,14 +11,18 @@ use std::process::Command;
+ use surf::Url;
+ use tokio::runtime::Runtime;
+ use urlencoding::encode;
++*/
+ 
+ #[allow(non_snake_case)]
+ #[allow(dead_code)]
+ #[allow(unused_mut)]
+ pub fn process(_dab_request: SendTextRequest) -> Result<String, DabError> {
+     // TODO: Add other RDK specific voice protocol support confirmation.
++/*
+     if _dab_request.voiceSystem.to_string() != "AmazonAlexa" {
++*/
+         return Err(DabError::Err400("Unsupported 'voiceSystem'.".to_string()));
++/*
+     }
+ 
+     // Use Google Translate TTS to generate the voice file.
+@@ -62,4 +69,5 @@ pub fn process(_dab_request: SendTextRequest) -> Result<String, DabError> {
+     sendVoiceCommand("/tmp/tts.wav".into())?;
+ 
+     Ok("{}".to_string())
++*/
+ }
+diff --git a/src/device/rdk/voice/set.rs b/src/device/rdk/voice/set.rs
+index ee6fc35..cb87e2c 100644
+--- a/src/device/rdk/voice/set.rs
++++ b/src/device/rdk/voice/set.rs
+@@ -1,20 +1,27 @@
++/*
+ use super::voice_functions::configureVoice;
++*/
+ use crate::dab::structs::DabError;
+ use crate::dab::structs::SetVoiceSystemRequest;
++/*
+ use crate::dab::structs::SetVoiceSystemResponse;
++*/
+ 
+ #[allow(non_snake_case)]
+ #[allow(dead_code)]
+ #[allow(unused_mut)]
+ pub fn process(_dab_request: SetVoiceSystemRequest) -> Result<String, DabError> {
++/*
+     let mut ResponseOperator = SetVoiceSystemResponse::default();
+ 
+     // TODO: Add other RDK specific voice protocol support confirmation.
+     if _dab_request.voiceSystem.name != "AmazonAlexa" {
++*/
+         // Unsupported VoiceSystem.
+         return Err(DabError::Err400(
+             "Setting voiceSystem failed. Unsupported voiceSystem.".to_string(),
+         ));
++/*
+     }
+ 
+     configureVoice(_dab_request.voiceSystem.enabled)?;
+@@ -28,4 +35,5 @@ pub fn process(_dab_request: SetVoiceSystemRequest) -> Result<String, DabError>
+ 
+     // *******************************************************************
+     Ok(serde_json::to_string(&ResponseOperator).unwrap())
++*/
+ }
+-- 
+2.43.0
+

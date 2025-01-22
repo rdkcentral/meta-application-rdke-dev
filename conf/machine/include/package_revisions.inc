@@ -8,3 +8,6 @@ PV:pn-residentui = "4.5.7"
 PR:pn-residentui = "r0"
 SRCREV:pn-residentui = "3bfd5735a006b341d1a50825719fc04aec40eb0e"
 PACKAGE_ARCH:pn-residentui = "${APP_LAYER_ARCH}"
+
+PACKAGE_ARCH:pn-dab-adapter = "${APP_LAYER_ARCH}"
++PACKAGE_ARCH:pn-mosquitto = "${APP_LAYER_ARCH}"
