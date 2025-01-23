@@ -398,13 +398,6 @@ SRC_URI += " \
     crate://crates.io/zune-inflate/0.2.54 \
 "
 
-
-SRC_URI += "file://0001-PREMIUMAPP-3142-Change-keymap-to-better-reflect-RDK-.patch"
-SRC_URI += "file://0002-PREMIUMAPP-3142-Improve-performance-of-device-teleme.patch"
-SRC_URI += "file://0003-PREMIUMAPP-3142-Improve-performance-of-device-info-r.patch"
-SRC_URI += "file://0004-PREMIUMAPP-3142-Indicate-support-for-HdrOnPlayback-i.patch"
-SRC_URI += "file://0005-PREMIUMAPP-3142-Remove-AmazonAlexa-from-the-list-of-.patch"
-
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
     file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327 \
