@@ -1,0 +1,21 @@
+[Unit]
+Description=DAB <-> RDK adapter
+Documentation=https://getdab.org/
+Requires=mosquitto.service
+Wants=wpeframework.service
+After=mosquitto.service wpeframework.service
+ConditionPathExists=/opt/dab-enable
+
+[Service]
+Type=simple
+Restart=always
+# time to sleep before restarting a service
+RestartSec=5s
+ExecStart=/usr/bin/dab-adapter --retire true
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=dab-adapter
+
+[Install]
+WantedBy=multi-user.target
