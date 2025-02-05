@@ -32,12 +32,3 @@ SYSTEMD_SERVICE:${PN} = "residentapp.service"
 FILES:${PN} += "${systemd_unitdir}/system/residentapp.service"
 FILES:${PN} += "/lib/rdk/residentApp.sh"
 
-# Remove once RDKEMW-671 is release. Workaround to fix UI issue
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI += "file://wpeframework-rdkshell.service"
-
-do_install:append() {
-   install -m 0644 ${WORKDIR}/wpeframework-rdkshell.service ${D}${systemd_unitdir}/system/wpeframework-rdkshell.service
-}
-SYSTEMD_SERVICE:${PN} += "wpeframework-rdkshell.service"
-FILES:${PN} += "${systemd_unitdir}/system/wpeframework-rdkshell.service"
