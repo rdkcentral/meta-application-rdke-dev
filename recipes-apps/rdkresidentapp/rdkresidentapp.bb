@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${S}/../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
 
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
 
-RDEPENDS:${PN} += "bash lighttpd wpeframework"
+RDEPENDS:${PN} += "bash lighttpd wpeframework thunderstartupservices"
 
 inherit systemd syslog-ng-config-gen
 SYSLOG-NG_FILTER = "residentapp"
@@ -31,4 +31,3 @@ do_install() {
 SYSTEMD_SERVICE:${PN} = "residentapp.service"
 FILES:${PN} += "${systemd_unitdir}/system/residentapp.service"
 FILES:${PN} += "/lib/rdk/residentApp.sh"
-
