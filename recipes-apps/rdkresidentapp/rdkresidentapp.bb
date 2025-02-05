@@ -15,7 +15,7 @@ SYSLOG-NG_LOGRATE_residentapp = "low"
 
 SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;${CMF_GITHUB_SRC_URI_SUFFIX}"
 
-S = "${WORKDIR}/git/residentapp/"
+S = "${WORKDIR}/git/residentapp"
 
 do_install() {
    install -d ${D}${systemd_unitdir}/system
