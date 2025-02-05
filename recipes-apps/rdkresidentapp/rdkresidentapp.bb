@@ -13,7 +13,7 @@ SYSLOG-NG_SERVICE_residentapp = "residentapp.service"
 SYSLOG-NG_DESTINATION_residentapp = "residentapp.log"
 SYSLOG-NG_LOGRATE_residentapp = "low"
 
-SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;protocol=${CMF_GIT_PROTOCOL};branch=develop"
+SRC_URI = "${CMF_GITHUB_ROOT}/rdke-refui;${CMF_GITHUB_SRC_URI_SUFFIX}"
 
 S = "${WORKDIR}/git/residentapp/"
 
