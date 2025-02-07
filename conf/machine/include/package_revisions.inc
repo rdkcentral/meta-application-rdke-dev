@@ -11,7 +11,7 @@ PACKAGE_ARCH:pn-residentui = "${APP_LAYER_ARCH}"
 
 PV:pn-dab-adapter = "0.7.0"
 PR:pn-dab-adapter = "r0"
-SRCREV:pn-dab-adapter = "1c497e1c047870cc7f115fc4aceb42c1f041c609"
+SRCREV:pn-dab-adapter = "ccfa32fc41126ed320b903b7a7cf468e98984f8a"
 PACKAGE_ARCH:pn-dab-adapter = "${APP_LAYER_ARCH}"
 
 PV:pn-mosquitto = "2.0.14"
