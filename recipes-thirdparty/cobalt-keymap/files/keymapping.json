@@ -1,0 +1,10 @@
+{
+  "keymappings": [
+    {
+      "keycode": 14,
+      "mapped": {
+        "keycode": 1
+      }
+    }
+  ]
+}
