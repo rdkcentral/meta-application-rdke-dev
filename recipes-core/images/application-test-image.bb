@@ -1,6 +1,9 @@
 SUMMARY = "RDKE Bootable Image with App support"
 
 LICENSE = "MIT"
+
+DEPENDS += "nss-native"
+
 IMAGE_INSTALL = " \
                  packagegroup-vendor-layer \
                  packagegroup-middleware-layer \
@@ -31,7 +34,7 @@ update_dropbearkey_path() {
    fi
 }
 
-ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "debug-variant", "wpeframework_binding_patch; ", "", d)}'
+ROOTFS_POSTPROCESS_COMMAND += "wpeframework_binding_patch; "
 
 wpeframework_binding_patch(){
     sed -i "s/127.0.0.1/0.0.0.0/g" ${IMAGE_ROOTFS}/etc/WPEFramework/config.json
