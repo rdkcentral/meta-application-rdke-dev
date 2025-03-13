@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
 # https://github.com/rdkcentral/rdke-refui/pull/7
 
 SRC_URI = "https://github.com/rdkcentral/rdke-refui/releases/download/${PV}/refui-${PV}.tar.gz;subdir=refui-${PV}"
-SRC_URI[sha256sum] = "a41f8fa3e2ed9a684e5b2d52d71e977a822cc29502dcce20254665cee4de630d"
+SRC_URI[sha256sum] = "5fb5ef59d30dbb717e5a36b605bb307e1612f7aa87c32450b2e20e2d8b693259"
 
 S = "${WORKDIR}/refui-${PV}"
 
