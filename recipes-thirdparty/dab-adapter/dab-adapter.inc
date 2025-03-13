@@ -17,6 +17,7 @@ RDEPENDS_${PN} = " mosquitto openssl"
 
 SRC_URI:append = " file://dab-adapter.service "
 SRC_URI:append = " file://dab-adapter.path "
+SRC_URI:append = " file://keymap.json "
 
 FILES:${PN} += "${systemd_unitdir}/system/dab-adapter.service"
 FILES:${PN} += "${systemd_unitdir}/system/dab-adapter.path"
@@ -35,4 +36,6 @@ do_install:append() {
   install -m 0644 ${WORKDIR}/dab-adapter.path ${D}/${systemd_unitdir}/system
   install -d ${D}/${sysconfdir}/mosquitto
   install -m 0644 ${WORKDIR}/mosquitto.conf ${D}/${sysconfdir}/mosquitto
+  install -d ${D}/${sysconfdir}/dab
+  install -m 0644 ${WORKDIR}/keymap.json ${D}/${sysconfdir}/dab
 }
