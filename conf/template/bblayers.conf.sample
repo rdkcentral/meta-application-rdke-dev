@@ -36,3 +36,5 @@ BBLAYERS =+ "${@'${MANIFEST_PATH_PROFILE_CONFIG}' if os.path.isfile('${MANIFEST_
 
 # Optional layers
 BBLAYERS =+ " ${@d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') if d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') is not None and os.path.isfile(d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') + '/conf/layer.conf') else ''}"
+# Restricted Native Apps (Optional)
+BBLAYERS =+ " ${@d.getVar('MANIFEST_PATH_RESTRICTED_NATIVE_APPS') if d.getVar('MANIFEST_PATH_RESTRICTED_NATIVE_APPS') is not None and os.path.isfile(d.getVar('MANIFEST_PATH_RESTRICTED_NATIVE_APPS') + '/conf/layer.conf') else ''}"
