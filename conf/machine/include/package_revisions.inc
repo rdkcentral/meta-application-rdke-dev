@@ -14,7 +14,7 @@ PR:pn-dab-adapter = "r0"
 SRCREV:pn-dab-adapter = "4755f391c7e7b112c9cf285ce99013ddc8ee9b82"
 PACKAGE_ARCH:pn-dab-adapter = "${APP_LAYER_ARCH}"
 
-PV:pn-mosquitto = "2.0.14"
+PV:pn-mosquitto = "2.0.18"
 PR:pn-mosquitto = "r0"
 SRCREV:pn-mosquitto = ""
 PACKAGE_ARCH:pn-mosquitto = "${APP_LAYER_ARCH}"

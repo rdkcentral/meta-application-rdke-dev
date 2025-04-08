@@ -13,6 +13,9 @@ IMAGE_INSTALL = " \
 IMAGE_INSTALL:append = " volatile-binds"
 # Todo: remove once https://github.com/rdk-e/meta-rdk-oss-reference/pull/429 is released
 IMAGE_INSTALL:append = " virtual/default-font"
+# Todo: lsof recipe is marked as OSS package. Remove once new OSS release is available
+IMAGE_INSTALL:append = " lsof"
+
 inherit core-image
 
 inherit custom-rootfs-creation
