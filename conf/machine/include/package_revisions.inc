@@ -14,9 +14,7 @@ PR:pn-dab-adapter = "r0"
 SRCREV:pn-dab-adapter = "4755f391c7e7b112c9cf285ce99013ddc8ee9b82"
 PACKAGE_ARCH:pn-dab-adapter = "${APP_LAYER_ARCH}"
 
-PV:pn-mosquitto = "2.0.18"
-PR:pn-mosquitto = "r0"
-SRCREV:pn-mosquitto = ""
+# mosquitto version is determined by the meta-openembedded layer version
 PACKAGE_ARCH:pn-mosquitto = "${APP_LAYER_ARCH}"
 
 PV:pn-dlt-daemon = "2.18.8"
