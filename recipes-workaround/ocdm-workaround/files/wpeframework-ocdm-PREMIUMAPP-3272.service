@@ -1,0 +1,8 @@
+[Unit]
+Description=WPEFramework OCDM Initialiser workaround
+Requires=wpeframework.service
+After=wpeframework.service wpeframework-ocdm.service
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/PluginActivator OCDM
