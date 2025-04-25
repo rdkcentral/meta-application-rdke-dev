@@ -12,6 +12,6 @@ RDEPENDS:packagegroup-application-layer = " \
                                            residentui \
                                            rdkresidentapp \
                                            ${@bb.utils.contains('DISTRO_FEATURES', 'enable-dab', 'dab-adapter mosquitto ', '', d)} \
-                                           ${@bb.utils.contains('DISTRO_FEATURES', 'enable_cobalt_plugin', 'cobalt-keymap libloader-app-tools ', '', d)} \
+                                           ${@bb.utils.contains('DISTRO_FEATURES', 'enable_cobalt_plugin', 'cobalt-keymap libloader-app-tools cobalt-certscope ', '', d)} \
                                            ocdm-workaround \
                                          "
