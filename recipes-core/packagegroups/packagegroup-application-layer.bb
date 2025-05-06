@@ -13,5 +13,4 @@ RDEPENDS:packagegroup-application-layer = " \
                                            rdkresidentapp \
                                            ${@bb.utils.contains('DISTRO_FEATURES', 'enable-dab', 'dab-adapter mosquitto ', '', d)} \
                                            ${@bb.utils.contains('DISTRO_FEATURES', 'enable_cobalt_plugin', 'cobalt-keymap libloader-app-tools cobalt-certscope ', '', d)} \
-                                           ocdm-workaround \
                                          "
