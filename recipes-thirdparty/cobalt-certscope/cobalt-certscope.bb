@@ -23,5 +23,6 @@ do_install() {
     fi
 }
 
+ALLOW_EMPTY:${PN} = "1"
 FILES:${PN} += "${datadir}"
 FILES:${PN} += "${systemd_unitdir}"
