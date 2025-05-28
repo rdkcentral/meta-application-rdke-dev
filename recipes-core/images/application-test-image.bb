@@ -16,9 +16,12 @@ IMAGE_INSTALL:append = " virtual/default-font"
 # Todo: lsof recipe is marked as OSS package. Remove once new OSS release is available
 IMAGE_INSTALL:append = " lsof"
 
-inherit core-image
+inherit core-image custom-rootfs-creation extrausers
 
-inherit custom-rootfs-creation
+EXTRA_USERS_PARAMS:append = "${@bb.utils.contains('DISTRO_FEATURES', 'amazon_non_root_support', '''\
+    groupadd -g 1000 amazon;\
+    useradd -u 1000 -g amazon -M -r -s /bin/sh amazon;\
+''', '', d)}"
 
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "" ,d)}"
