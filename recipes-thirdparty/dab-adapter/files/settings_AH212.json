@@ -1,0 +1,8 @@
+{
+    "supported_languages": ["en-US", "es-US"],
+    "device_info": {
+      "chipset": "S905X4",
+      "manufacturer":"RDKCommonPort",
+      "model":"AH212"
+    }
+}

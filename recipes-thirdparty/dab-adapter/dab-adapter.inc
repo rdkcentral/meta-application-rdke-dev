@@ -18,7 +18,7 @@ RDEPENDS_${PN} = " mosquitto openssl"
 SRC_URI:append = " file://dab-adapter.service "
 SRC_URI:append = " file://dab-adapter.path "
 SRC_URI:append = " file://keymap.json "
-SRC_URI:append = " file://settings.json "
+SRC_URI:append = " file://settings_AH212.json "
 
 FILES:${PN} += "${systemd_unitdir}/system/dab-adapter.service"
 FILES:${PN} += "${systemd_unitdir}/system/dab-adapter.path"
@@ -39,5 +39,8 @@ do_install:append() {
   install -m 0644 ${WORKDIR}/mosquitto.conf ${D}/${sysconfdir}/mosquitto
   install -d ${D}/${sysconfdir}/dab
   install -m 0644 ${WORKDIR}/keymap.json ${D}/${sysconfdir}/dab
-  install -m 0644 ${WORKDIR}/settings.json ${D}/${sysconfdir}/dab
+}
+
+do_install:append:ah212() {
+  install -m 0644 ${WORKDIR}/settings_AH212.json ${D}/${sysconfdir}/dab/settings.json
 }
