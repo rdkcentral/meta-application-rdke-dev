@@ -14,8 +14,11 @@ do_configure[noexec] = "1"
 do_patch[noexec] = "1"
 
 do_install() {
+        install -d ${D}/usr/share/content/data/etc
+        install -m 0644 ${S}/keymapping.json ${D}/usr/share/content/data/etc/keymapping.json
+# left for backward compatibility
         install -d ${D}/usr/share/content/data/app/cobalt/content/etc
         install -m 0644 ${S}/keymapping.json ${D}/usr/share/content/data/app/cobalt/content/etc/keymapping.json
 }
 
-FILES:${PN} += "/usr/share/content/data/app/cobalt/content/etc/keymapping.json"
+FILES:${PN} += "/usr/share/content/data"
