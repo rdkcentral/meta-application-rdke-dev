@@ -23,5 +23,8 @@
     "KEY_6": 54,
     "KEY_7": 55,
     "KEY_8": 56,
-    "KEY_9": 57
+    "KEY_9": 57,
+    "KEY_CHANNEL_UP": 33,
+    "KEY_CHANNEL_DOWN": 34,
+    "KEY_INFO": 133
 }
