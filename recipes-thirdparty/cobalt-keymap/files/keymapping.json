@@ -1,6 +1,12 @@
 {
   "keymappings": [
     {
+      "keycode": 80,
+      "mapped": {
+        "keycode": 179
+      }
+    },
+    {
       "keycode": 191,
       "mapped": {
         "keycode": 358
