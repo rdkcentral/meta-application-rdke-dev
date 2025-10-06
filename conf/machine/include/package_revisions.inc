@@ -1,12 +1,12 @@
 # Both rdkresidentapp and residentui uses same repo.
-PV:pn-rdkresidentapp = "5.0.1"
+PV:pn-rdkresidentapp = "5.0.7"
 PR:pn-rdkresidentapp = "r0"
-SRCREV:pn-rdkresidentapp = "4172dd990c95146c4c0e7c88497afb5b8fc834a6"
+SRCREV:pn-rdkresidentapp = "a24cdadb199a43782cb3e338f278030705ae3cf9"
 PACKAGE_ARCH:pn-rdkresidentapp = "${APP_LAYER_ARCH}"
 
-PV:pn-residentui = "5.0.1"
+PV:pn-residentui = "5.0.7"
 PR:pn-residentui = "r0"
-SRCREV:pn-residentui = "4172dd990c95146c4c0e7c88497afb5b8fc834a6"
+SRCREV:pn-residentui = "a24cdadb199a43782cb3e338f278030705ae3cf9"
 PACKAGE_ARCH:pn-residentui = "${APP_LAYER_ARCH}"
 
 PV:pn-dab-adapter = "0.7.0"
