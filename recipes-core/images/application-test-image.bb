@@ -9,6 +9,13 @@ IMAGE_INSTALL = " \
                  packagegroup-middleware-layer \
                  packagegroup-application-layer \
                  "
+# VOLATILE_BINDS configuration can change for each layer, it has to be built locally across all layer
+IMAGE_INSTALL:append = " volatile-binds"
+# Todo: remove once https://github.com/rdk-e/meta-rdk-oss-reference/pull/429 is released
+IMAGE_INSTALL:append = " virtual/default-font"
+# Todo: lsof recipe is marked as OSS package. Remove once new OSS release is available
+IMAGE_INSTALL:append = " lsof"
+
 inherit core-image custom-rootfs-creation extrausers
 
 EXTRA_USERS_PARAMS:append = "${@bb.utils.contains('DISTRO_FEATURES', 'amazon_non_root_support', '''\
