@@ -1,7 +1,7 @@
 {
   "keymappings": [
     {
-      "keycode": 80,
+      "keycode": 62,
       "mapped": {
         "keycode": 179
       }
