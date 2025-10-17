@@ -1,29 +1,38 @@
 SUMMARY = "RDK application to showcase rdkservices"
 SECTION = "rdk/samples"
 LICENSE = "Apache-2.0 & MIT & OFL-1.1 & CC0-1.0 & BitstreamVera"
-LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=387be95ea3370b9ae768c395d4eeaeea"
+LIC_FILES_CHKSUM = "file://${S}/../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
 
 # Temporary; until following PRs gets to main branch.
 # https://github.com/rdkcentral/rdke-refui/pull/5
 # https://github.com/rdkcentral/rdke-refui/pull/7
 
-SRC_URI = "https://github.com/rdkcentral/rdke-refui/releases/download/${PV}/refui-${PV}.tar.gz;subdir=refui-${PV}"
-SRC_URI[sha256sum] = "ff420a9df74ab6e80eec7e57a4a2b56c107d8ad976927791cbaf45306a04e76d"
+SRC_URI = "npm://github.com/rdkcentral/rdke-refui.git;protocol=https;branch=feature/devUI"
 
-S = "${WORKDIR}/refui-${PV}"
+S = "${WORKDIR}/git/accelerator-home-ui"
+
+inherit npm
+
+DEPENDS += "nodejs-native"
 
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
 
-#Lightning application, no need for configuration/compilation
-do_compile[noexec] = "1"
-do_configure[noexec] = "1"
-do_patch[noexec] = "1"
+do_compile() {
+    export PATH="${WORKDIR}/recipe-sysroot-native/usr/bin:${PATH}"
 
-RDEPENDS:${PN}-dev = ""
+    # Build the Lightning app
+    ./node_modules/.bin/lng dist || { echo "lng dist failed"; exit 1; }
+
+    # Confirm dist folder exists
+    if [ ! -d dist ]; then
+        echo "Error: dist folder not created"
+        exit 1
+    fi
+}
 
 do_install() {
    install -d ${D}/home/root/lxresui
-   cp -r ${S}/* ${D}/home/root/lxresui/
+   cp -r dist/es6/* ${D}/home/root/lxresui/
 }
 
 FILES:${PN} += "/home/root/*"
