@@ -6,7 +6,7 @@ LICENSE = "MIT"
 inherit packagegroup
 
 ##Change the version number for each release.
-PV = "4.2.1"
+PV = "5.0.0"
 
 RDEPENDS:packagegroup-application-layer = " \
                                            residentui \
