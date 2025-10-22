@@ -1,29 +1,42 @@
 SUMMARY = "RDK application to showcase rdkservices"
 SECTION = "rdk/samples"
 LICENSE = "Apache-2.0 & MIT & OFL-1.1 & CC0-1.0 & BitstreamVera"
-LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=387be95ea3370b9ae768c395d4eeaeea"
+LIC_FILES_CHKSUM = "file://${S}/../LICENSE;md5=fac1f1de1b2231cdc801d64ac2607c6b"
 
 # Temporary; until following PRs gets to main branch.
 # https://github.com/rdkcentral/rdke-refui/pull/5
 # https://github.com/rdkcentral/rdke-refui/pull/7
 
-SRC_URI = "https://github.com/rdkcentral/rdke-refui/releases/download/${PV}/refui-${PV}.tar.gz;subdir=refui-${PV}"
-SRC_URI[sha256sum] = "97d6550348ec3d6f78006087fee5f647d3ce09cd987e6d3de7d7ee8cfa29a9db"
+SRC_URI = "git://github.com/rdkcentral/rdke-refui.git;protocol=https;branch=develop"
+SRCREV ="${AUTOREV}"
+S = "${WORKDIR}/git/accelerator-home-ui"
 
-S = "${WORKDIR}/refui-${PV}"
 
+inherit npm
+
+DEPENDS += "nodejs-native nodejs"
 PACKAGE_ARCH = "${APP_LAYER_ARCH}"
+do_compile[network] = "1"
+do_compile() {
+    export PATH="${WORKDIR}/recipe-sysroot-native/usr/bin:${PATH}"
 
-#Lightning application, no need for configuration/compilation
-do_compile[noexec] = "1"
-do_configure[noexec] = "1"
-do_patch[noexec] = "1"
+    npm install || { echo "npm install failed"; }
+    npm install @lightningjs/cli || { echo "Lightning CLI install failed"; }
+    echo "LNG_BUNDLER=esbuild" > .env
+    npm install esbuild || { echo "esbuild install failed"; }
 
-RDEPENDS:${PN}-dev = ""
+    # Build the Lightning app
+    ./node_modules/.bin/lng dist || { echo "lng dist failed"; }
 
+    # Confirm dist folder exists
+    if [ ! -d dist ]; then
+        echo "Error: dist folder not created"
+        exit 1
+    fi
+}
 do_install() {
    install -d ${D}/home/root/lxresui
-   cp -r ${S}/* ${D}/home/root/lxresui/
+   cp -r dist/es6/* ${D}/home/root/lxresui/
 }
 
 FILES:${PN} += "/home/root/*"

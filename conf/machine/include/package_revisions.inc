@@ -4,9 +4,9 @@ PR:pn-rdkresidentapp = "r0"
 SRCREV:pn-rdkresidentapp = "fc17a9a9145a7dffdd447a3cca4f0fd21dec880c"
 PACKAGE_ARCH:pn-rdkresidentapp = "${APP_LAYER_ARCH}"
 
-PV:pn-residentui = "5.0.12"
+PV:pn-residentui = "5.0.13"
 PR:pn-residentui = "r0"
-SRCREV:pn-residentui = "fc17a9a9145a7dffdd447a3cca4f0fd21dec880c"
+#SRCREV:pn-residentui = "fc17a9a9145a7dffdd447a3cca4f0fd21dec880c"
 PACKAGE_ARCH:pn-residentui = "${APP_LAYER_ARCH}"
 
 PV:pn-dab-adapter = "0.7.0"
