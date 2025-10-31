@@ -11,7 +11,7 @@ PACKAGE_ARCH:pn-residentui = "${APP_LAYER_ARCH}"
 
 PV:pn-dab-adapter = "0.8.0-dev"
 PR:pn-dab-adapter = "r0"
-SRCREV:pn-dab-adapter = "d758cdb9cd61955b1ae008fea91716f29f5e3698"
+SRCREV:pn-dab-adapter = "5ebab46c4a7f88ddc8bd173f8fea50089338a7f7"
 PACKAGE_ARCH:pn-dab-adapter = "${APP_LAYER_ARCH}"
 
 # mosquitto version is determined by the meta-openembedded layer version
