@@ -6,13 +6,12 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get dab-adapter could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/dab-adapter/0.6.0"
-SRC_URI += "git://github.com/device-automation-bus/dab-adapter-rs.git;protocol=https;nobranch=1;branch=v0.7.0"
-# HEAD~1 of v0.7.0: without cargo-lock bump to version 4
-SRCREV = "cd51d90ca8cdaff18cb0032d00341b2f9c01c5f9"
+# SRC_URI += "crate://crates.io/dab-adapter/0.8.0-dev"
+SRC_URI += "git://git@github.com/device-automation-bus/dab-adapter-rs.git;protocol=ssh;nobranch=1;branch=main"
+SRCREV = "d758cdb9cd61955b1ae008fea91716f29f5e3698"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
-PV:append = ".AUTOINC+cd51d90ca8"
+PV:append = ".AUTOINC+d758cdb9cd"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -398,6 +397,8 @@ SRC_URI += " \
     crate://crates.io/windows_x86_64_msvc/0.52.4 \
     crate://crates.io/zune-inflate/0.2.54 \
 "
+
+
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
