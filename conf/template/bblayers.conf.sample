@@ -18,7 +18,6 @@ BBLAYERS ?= " \
 "
 
 BBLAYERS =+ "${@'${MANIFEST_PATH_COMMON_OSS_REFERENCE}' if os.path.isfile('${MANIFEST_PATH_COMMON_OSS_REFERENCE}/conf/layer.conf') else ''}"
-BBLAYERS =+ "${@'${MANIFEST_PATH_OSS_RELEASE}' if os.path.isfile('${MANIFEST_PATH_OSS_RELEASE}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_OSS_EXT}' if os.path.isfile('${MANIFEST_PATH_OSS_EXT}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_PRODUCT_LAYER}' if os.path.isfile('${MANIFEST_PATH_PRODUCT_LAYER}/conf/layer.conf') else ''}"
 BBLAYERS =+ "${@'${MANIFEST_PATH_MW_RELEASE}' if os.path.isfile('${MANIFEST_PATH_MW_RELEASE}/conf/layer.conf') else ''}"
@@ -36,6 +35,8 @@ BBLAYERS =+ "${@'${MANIFEST_PATH_COMMON_CONFIG}' if os.path.isfile('${MANIFEST_P
 BBLAYERS =+ "${@'${MANIFEST_PATH_PROFILE_CONFIG}' if os.path.isfile('${MANIFEST_PATH_PROFILE_CONFIG}/conf/layer.conf') else ''}"
 
 # Optional layers
+BBLAYERS =+ "${@d.getVar('MANIFEST_PATH_OSS_RELEASE') if d.getVar('MANIFEST_PATH_OSS_RELEASE') is not None and os.path.isfile(d.getVar('MANIFEST_PATH_OSS_RELEASE') + '/conf/layer.conf') else ''}"
 BBLAYERS =+ " ${@d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') if d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') is not None and os.path.isfile(d.getVar('MANIFEST_PATH_IMAGE_SUPPORT') + '/conf/layer.conf') else ''}"
+
 # Restricted Native Apps (Optional)
 BBLAYERS =+ " ${@d.getVar('MANIFEST_PATH_RESTRICTED_NATIVE_APPS') if d.getVar('MANIFEST_PATH_RESTRICTED_NATIVE_APPS') is not None and os.path.isfile(d.getVar('MANIFEST_PATH_RESTRICTED_NATIVE_APPS') + '/conf/layer.conf') else ''}"
