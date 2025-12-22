@@ -26,17 +26,12 @@ FILES:${PN} += "${systemd_unitdir}/system/dab-adapter.path"
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "dab-adapter.path"
 
-SRC_URI:append = " file://mosquitto.conf "
-FILES_${PN} += "${sysconfdir}/mosquitto/mosquitto.conf"
-
 do_compile[network] = "1"
 
 do_install:append() {
   install -d ${D}/${systemd_unitdir}/system
   install -m 0644 ${WORKDIR}/dab-adapter.service ${D}/${systemd_unitdir}/system
   install -m 0644 ${WORKDIR}/dab-adapter.path ${D}/${systemd_unitdir}/system
-  install -d ${D}/${sysconfdir}/mosquitto
-  install -m 0644 ${WORKDIR}/mosquitto.conf ${D}/${sysconfdir}/mosquitto
   install -d ${D}/${sysconfdir}/dab
   install -m 0644 ${WORKDIR}/keymap.json ${D}/${sysconfdir}/dab
   install -m 0644 ${WORKDIR}/settings.json ${D}/${sysconfdir}/dab

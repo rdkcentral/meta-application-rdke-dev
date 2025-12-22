@@ -1,7 +1,7 @@
 do_install:append () {
-   if [ -f "${D}${sysconfdir}/mosquitto/mosquitto.conf" ]; then
-       rm -f ${D}${sysconfdir}/mosquitto/mosquitto.conf
-   fi
+    if [ -f "${D}${sysconfdir}/mosquitto/mosquitto.conf" ]; then
+        sed -i 's/# allow_anonymous$/allow_anonymous true/' ${D}${sysconfdir}/mosquitto/mosquitto.conf
+        sed -i 's/#user mosquitto/user root/' ${D}${sysconfdir}/mosquitto/mosquitto.conf
+        sed -i 's/#listener$/listener 1883/' ${D}${sysconfdir}/mosquitto/mosquitto.conf
+    fi
 }
-
-FILES:${PN}-dev:remove = "${sysconfdir}/mosquitto/mosquitto.conf"

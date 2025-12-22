@@ -1,17 +1,17 @@
 # Both rdkresidentapp and residentui uses same repo.
-PV:pn-rdkresidentapp = "5.0.17"
+PV:pn-rdkresidentapp = "5.0.20"
 PR:pn-rdkresidentapp = "r0"
-SRCREV:pn-rdkresidentapp = "5a88f04cee929d67e3ab73a53754ae6467fd0b43"
+SRCREV:pn-rdkresidentapp = "64e1a62279ab2f2d3299d1394e802de763c7e749"
 PACKAGE_ARCH:pn-rdkresidentapp = "${APP_LAYER_ARCH}"
 
-PV:pn-residentui = "5.0.17"
+PV:pn-residentui = "5.0.20"
 PR:pn-residentui = "r0"
-SRCREV:pn-residentui = "5a88f04cee929d67e3ab73a53754ae6467fd0b43"
+SRCREV:pn-residentui = "64e1a62279ab2f2d3299d1394e802de763c7e749"
 PACKAGE_ARCH:pn-residentui = "${APP_LAYER_ARCH}"
 
-PV:pn-dab-adapter = "0.7.0"
+PV:pn-dab-adapter = "0.8.0-dev"
 PR:pn-dab-adapter = "r0"
-SRCREV:pn-dab-adapter = "cd51d90ca8cdaff18cb0032d00341b2f9c01c5f9"
+SRCREV:pn-dab-adapter = "5ebab46c4a7f88ddc8bd173f8fea50089338a7f7"
 PACKAGE_ARCH:pn-dab-adapter = "${APP_LAYER_ARCH}"
 
 # mosquitto version is determined by the meta-openembedded layer version
