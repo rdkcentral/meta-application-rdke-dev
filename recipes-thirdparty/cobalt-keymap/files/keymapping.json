@@ -1,33 +1,45 @@
 {
   "keymappings": [
     {
+      "description": "YouTube button",
       "keycode": 62,
       "mapped": {
         "keycode": 179
       }
     },
     {
+      "description": "Info overlay",
       "keycode": 191,
       "mapped": {
         "keycode": 358
       }
     },
     {
+      "description": "Channel up",
       "keycode": 104,
       "mapped": {
         "keycode": 402
       }
     },
     {
+      "description": "Channel down",
       "keycode": 109,
       "mapped": {
         "keycode": 403
       }
     },
     {
+      "description": "Back",
       "keycode": 14,
       "mapped": {
         "keycode": 1
+      }
+    },
+    {
+      "description": "OK/Select",
+      "keycode": 353,
+      "mapped": {
+        "keycode": 28
       }
     }
   ]
