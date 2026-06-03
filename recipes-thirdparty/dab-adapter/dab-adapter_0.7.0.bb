@@ -8,7 +8,7 @@ inherit cargo
 # how to get dab-adapter could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/dab-adapter/0.6.0"
 SRC_URI += "git://github.com/device-automation-bus/dab-adapter-rs.git;protocol=https;nobranch=1;branch=v0.7.0"
-SRCREV = "1b439ab62ba65fdc06bd9d3bb34a5b7208e03d30"
+SRCREV = "f471731d405f8683702b3cfb947064e6e397f2e9"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
 PV:append = ".AUTOINC+1b439ab62b"
