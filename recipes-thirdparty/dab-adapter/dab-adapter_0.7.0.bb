@@ -11,7 +11,7 @@ SRC_URI += "git://github.com/device-automation-bus/dab-adapter-rs.git;protocol=h
 SRCREV = "c157b545c31922fe7bb356bbfb39b4a3c955ceba"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
-PV:append = ".AUTOINC+f471731d40"
+PV:append = ".AUTOINC+c157b545c3"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
